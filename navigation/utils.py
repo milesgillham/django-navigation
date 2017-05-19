@@ -2,7 +2,7 @@
 from django.conf import settings
 from django.core.exceptions import ImproperlyConfigured, ObjectDoesNotExist
 from django.db import models
-from django.utils.importlib import import_module
+from importlib import import_module
 from django.utils.translation import pgettext
 
 def discover_sitemaps():

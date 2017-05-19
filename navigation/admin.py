@@ -1,6 +1,6 @@
 
 from django.contrib import admin
-from django.conf.urls import patterns
+from django.conf.urls import url
 from django.db import transaction
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.decorators.http import require_POST, require_safe
@@ -70,11 +70,11 @@ class MenuAdmin(admin.ModelAdmin):
     
     def get_urls(self):
         urls = super(MenuAdmin, self).get_urls()
-        my_urls = patterns('',
-            (r'^(\d)/view/', self.admin_site.admin_view(self.show_view)),
-            (r'^(\d)/refresh/', self.admin_site.admin_view(self.refresh_view)),
-            (r'^find-sitemap-items/', self.admin_site.admin_view(self.find_sitemap_items)),
-        )
+        my_urls = [
+            url(r'^(\d)/view/', self.admin_site.admin_view(self.show_view)),
+            url(r'^(\d)/refresh/', self.admin_site.admin_view(self.refresh_view)),
+            url(r'^find-sitemap-items/', self.admin_site.admin_view(self.find_sitemap_items)),
+        ]
         return my_urls + urls
    
     def save_model(self, request, obj, form, change):
